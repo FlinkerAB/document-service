@@ -1,0 +1,19 @@
+---
+
+server:
+  port: 9812
+  
+app:
+  host: @app.host@
+  environment: @app.environment@
+  
+spring:
+  jackson:
+    date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
+       
+logging:
+  file: @logging.file@
+  level:
+    org.apache: ERROR
+    org.springframework: ERROR
+    se.flinker: DEBUG
