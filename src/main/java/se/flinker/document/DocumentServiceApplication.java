@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
+import se.flinker.document.filters.ApiKeyFilter;
 import se.flinker.document.filters.RequestResponseFilter;
 import se.flinker.document.utils.AppEnvironment;
 import se.flinker.document.utils.LogUtil;
@@ -51,6 +52,15 @@ public class DocumentServiceApplication {
         bean.setFilter(filter);
         bean.setOrder(0);
         bean.addUrlPatterns("/*");
+        return bean;
+    }
+    
+    @Bean
+    public FilterRegistrationBean regApiKeyFilter(ApiKeyFilter filter) {
+        FilterRegistrationBean bean = new FilterRegistrationBean();
+        bean.setFilter(filter);
+        bean.setOrder(1);
+        bean.addUrlPatterns("/api/*");
         return bean;
     }
 }

@@ -7,6 +7,10 @@ app:
   host: @app.host@
   environment: @app.environment@
   
+api:
+  keys:
+    - 123456
+      
 spring:
   jackson:
     date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
