@@ -26,7 +26,7 @@ public class Html2PdfConsumer {
         Properties props = new Properties();
         props.load(Files.newBufferedReader(path));
         
-        String endpoint = read("service endpoint", props.getProperty("endpoint", "https://pdfservice.flinker.net/api/v1/html2pdf"));
+        String endpoint = read("service endpoint", props.getProperty("endpoint"));
         String apiKey = read("api key", props.getProperty("apiKey"));
         String input = read("input file", props.getProperty("inputFile"));
         String output = read("output file", props.getProperty("outputFile"));
