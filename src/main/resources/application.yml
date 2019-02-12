@@ -6,6 +6,7 @@ server:
 app:
   host: @app.host@
   environment: @app.environment@
+  fontsDir:
   
 api:
   keys:
