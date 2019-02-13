@@ -1,6 +1,7 @@
 package se.flinker.document.services;
 
 import static java.util.Objects.nonNull;
+import static se.flinker.document.utils.LogUtil.debug;
 import static se.flinker.document.utils.LogUtil.warn;
 
 import java.io.IOException;
@@ -62,6 +63,7 @@ public class Html2PdfService {
                 FontProvider fontProvider = new DefaultFontProvider();
                 Path path = Paths.get(fontsDir);
                 if (Files.exists(path) && Files.isDirectory(path) && Files.list(path).count() > 0) {
+                    debug(tx, "adding fonts dir: " + path.toAbsolutePath(), log);
                     fontProvider.addDirectory(fontsDir);
                     props.setFontProvider(fontProvider);
                 }
