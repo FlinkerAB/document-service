@@ -10,8 +10,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,21 +29,16 @@ public class Html2PdfService {
     private static final Logger log = LoggerFactory.getLogger(Html2PdfService.class);
 
     private String fontsDir;
-    private ConverterProperties properties;
     
     @Autowired
     public Html2PdfService(@Value("${app.fontsDir}") String fontsDir) {
         this.fontsDir = fontsDir;
     }
     
-    @PostConstruct
-    public void postConstruct() {
-        this.properties = createProperties(getClass().getSimpleName());
-    }
-    
     public byte[] generatePdf(Map<String, String> payload, String tx) {
         try {
             String html = payload.get("html");
+            ConverterProperties properties = createProperties(payload, tx);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             HtmlConverter.convertToPdf(html, baos, properties);
             return baos.toByteArray();
@@ -54,7 +47,7 @@ public class Html2PdfService {
         }
     }
     
-    private ConverterProperties createProperties(String tx) {
+    private ConverterProperties createProperties(Map<String, String> payload, String tx) {
         ConverterProperties props = new ConverterProperties();
         props.setCharset("utf-8");
 
@@ -71,6 +64,13 @@ public class Html2PdfService {
                 warn(tx, "Problems adding fonts directory: " + e.getMessage(), log);
             }
         }
+        
+        if (payload.containsKey("colormode")) {
+            if ("cmyk".equalsIgnoreCase(payload.get("colormode"))) {
+                props.setCssApplierFactory(new CMYKCssApplierFactory());
+            }
+        }
+        
         return props;
     }
 
