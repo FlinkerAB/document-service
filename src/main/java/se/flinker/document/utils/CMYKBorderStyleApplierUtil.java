@@ -20,11 +20,11 @@ import com.itextpdf.layout.borders.OutsetBorder;
 import com.itextpdf.layout.borders.RidgeBorder;
 import com.itextpdf.layout.borders.RoundDotsBorder;
 import com.itextpdf.layout.borders.SolidBorder;
-import com.itextpdf.layout.property.BorderRadius;
-import com.itextpdf.layout.property.Property;
-import com.itextpdf.layout.property.UnitValue;
+import com.itextpdf.layout.properties.BorderRadius;
+import com.itextpdf.layout.properties.Property;
+import com.itextpdf.layout.properties.UnitValue;
 import com.itextpdf.styledxmlparser.css.resolve.CssDefaults;
-import com.itextpdf.styledxmlparser.css.util.CssUtils;
+import com.itextpdf.styledxmlparser.css.util.CssDimensionParsingUtils;
 
 /**
 * Utilities class to apply border styles.
@@ -50,7 +50,7 @@ private CMYKBorderStyleApplierUtil() {
  * @param element  the element
  */
 public static void applyBorders(Map<String, String> cssProps, ProcessorContext context, IPropertyContainer element) {
-    float em = CssUtils.parseAbsoluteLength(cssProps.get(CssConstants.FONT_SIZE));
+    float em = CssDimensionParsingUtils.parseAbsoluteLength(cssProps.get(CssConstants.FONT_SIZE));
     float rem = context.getCssContext().getRootFontSize();
 
     Border[] bordersArray = getBordersArray(cssProps, em, rem);
@@ -147,7 +147,7 @@ public static Border getCertainBorder(String borderWidth, String borderStyle, St
         }
     }
 
-    UnitValue unitValue = CssUtils.parseLengthValueToPt(borderWidth, em, rem);
+    UnitValue unitValue = CssDimensionParsingUtils.parseLengthValueToPt(borderWidth, em, rem);
     if (unitValue == null) {
         return null;
     }
@@ -163,7 +163,7 @@ public static Border getCertainBorder(String borderWidth, String borderStyle, St
         float opacity = 1f;
         if (borderColor != null) {
             if (!CssConstants.TRANSPARENT.equals(borderColor)) {
-                float[] rgbaColor = CssUtils.parseRgbaColor(borderColor);
+                float[] rgbaColor = CssDimensionParsingUtils.parseRgbaColor(borderColor);
                 color = new DeviceRgb(rgbaColor[0], rgbaColor[1], rgbaColor[2]);
                 opacity = rgbaColor[3];
             } else {
@@ -218,24 +218,24 @@ public static BorderRadius[] getBorderRadiiArray(Map<String, String> styles, flo
     BorderRadius[] borderRadii = new BorderRadius[4];
 
     BorderRadius borderRadius = null;
-    UnitValue borderRadiusUV = CssUtils.parseLengthValueToPt(styles.get(CssConstants.BORDER_RADIUS), em, rem);
+    UnitValue borderRadiusUV = CssDimensionParsingUtils.parseLengthValueToPt(styles.get(CssConstants.BORDER_RADIUS), em, rem);
     if (null != borderRadiusUV) {
         borderRadius = new BorderRadius(borderRadiusUV);
     }
 
-    UnitValue[] borderTopLeftRadiusUV = CssUtils.parseSpecificCornerBorderRadius(styles.get(CssConstants.BORDER_TOP_LEFT_RADIUS), em, rem);
+    UnitValue[] borderTopLeftRadiusUV = CssDimensionParsingUtils.parseSpecificCornerBorderRadius(styles.get(CssConstants.BORDER_TOP_LEFT_RADIUS), em, rem);
     borderRadii[0] = null == borderTopLeftRadiusUV
             ? borderRadius
             : new BorderRadius(borderTopLeftRadiusUV[0], borderTopLeftRadiusUV[1]);
-    UnitValue[] borderTopRightRadiusUV = CssUtils.parseSpecificCornerBorderRadius(styles.get(CssConstants.BORDER_TOP_RIGHT_RADIUS), em, rem);
+    UnitValue[] borderTopRightRadiusUV = CssDimensionParsingUtils.parseSpecificCornerBorderRadius(styles.get(CssConstants.BORDER_TOP_RIGHT_RADIUS), em, rem);
     borderRadii[1] = null == borderTopRightRadiusUV
             ? borderRadius
             : new BorderRadius(borderTopRightRadiusUV[0], borderTopRightRadiusUV[1]);
-    UnitValue[] borderBottomRightRadiusUV = CssUtils.parseSpecificCornerBorderRadius(styles.get(CssConstants.BORDER_BOTTOM_RIGHT_RADIUS), em, rem);
+    UnitValue[] borderBottomRightRadiusUV = CssDimensionParsingUtils.parseSpecificCornerBorderRadius(styles.get(CssConstants.BORDER_BOTTOM_RIGHT_RADIUS), em, rem);
     borderRadii[2] = null == borderBottomRightRadiusUV
             ? borderRadius
             : new BorderRadius(borderBottomRightRadiusUV[0], borderBottomRightRadiusUV[1]);
-    UnitValue[] borderBottomLeftRadiusUV = CssUtils.parseSpecificCornerBorderRadius(styles.get(CssConstants.BORDER_BOTTOM_LEFT_RADIUS), em, rem);
+    UnitValue[] borderBottomLeftRadiusUV = CssDimensionParsingUtils.parseSpecificCornerBorderRadius(styles.get(CssConstants.BORDER_BOTTOM_LEFT_RADIUS), em, rem);
     borderRadii[3] = null == borderBottomLeftRadiusUV
             ? borderRadius
             : new BorderRadius(borderBottomLeftRadiusUV[0], borderBottomLeftRadiusUV[1]);
@@ -255,7 +255,7 @@ public static BorderRadius[] getBorderRadiiArray(Map<String, String> styles, flo
 @Deprecated
 public static UnitValue getBorderRadius(Map<String, String> styles, float em, float rem) {
     String borderRadius = styles.get(CssConstants.BORDER_RADIUS);
-    return CssUtils.parseLengthValueToPt(borderRadius, em, rem);
+    return CssDimensionParsingUtils.parseLengthValueToPt(borderRadius, em, rem);
 }
 
 private static String getSpecificBorderColorOrDefaultColor(Map<String, String> styles, String specificBorderColorProperty) {

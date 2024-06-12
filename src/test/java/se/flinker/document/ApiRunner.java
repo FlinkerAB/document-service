@@ -38,8 +38,8 @@ public class ApiRunner {
     
     private static Object payload() throws IOException {
         Map<String, String> payload = new HashMap<>();
-        payload.put("html", Fixtures.load("colors.html"));
-        payload.put("colormode", "cmyk");
+        payload.put("html", Fixtures.load("flexbox.html"));
+//        payload.put("colormode", "cmyk");
         return payload;
     }
 }

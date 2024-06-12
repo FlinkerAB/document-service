@@ -38,12 +38,15 @@ import com.itextpdf.html2pdf.resolver.font.DefaultFontProvider;
 import com.itextpdf.io.source.ByteArrayOutputStream;
 import com.itextpdf.kernel.colors.Color;
 import com.itextpdf.kernel.colors.DeviceRgb;
-import com.itextpdf.kernel.pdf.xobject.PdfImageXObject;
+import com.itextpdf.kernel.pdf.xobject.PdfXObject;
 import com.itextpdf.layout.IPropertyContainer;
 import com.itextpdf.layout.font.FontProvider;
-import com.itextpdf.layout.property.Background;
-import com.itextpdf.layout.property.BackgroundImage;
-import com.itextpdf.layout.property.Property;
+import com.itextpdf.layout.properties.Background;
+import com.itextpdf.layout.properties.BackgroundImage;
+import com.itextpdf.layout.properties.BackgroundRepeat;
+import com.itextpdf.layout.properties.BackgroundRepeat.BackgroundRepeatValue;
+import com.itextpdf.layout.properties.Property;
+import com.itextpdf.styledxmlparser.css.util.CssDimensionParsingUtils;
 import com.itextpdf.styledxmlparser.css.util.CssUtils;
 import com.itextpdf.styledxmlparser.node.IElementNode;
 import com.itextpdf.styledxmlparser.node.IStylesContainer;
@@ -133,7 +136,7 @@ public class Runner {
         void applyBackground(Map<String, String> cssProps, ProcessorContext context, IPropertyContainer element) {
             String backgroundColorStr = cssProps.get(CssConstants.BACKGROUND_COLOR);
             if (backgroundColorStr != null && !CssConstants.TRANSPARENT.equals(backgroundColorStr)) {
-                float[] rgbaColor = CssUtils.parseRgbaColor(backgroundColorStr);
+                float[] rgbaColor = CssDimensionParsingUtils.parseRgbaColor(backgroundColorStr);
 //                Color color = new DeviceRgb(rgbaColor[0], rgbaColor[1], rgbaColor[2]);
                 Color color = Color.convertRgbToCmyk(new DeviceRgb(rgbaColor[0], rgbaColor[1], rgbaColor[2]));
                 float opacity = rgbaColor[3];
@@ -143,14 +146,21 @@ public class Runner {
             String backgroundImageStr = cssProps.get(CssConstants.BACKGROUND_IMAGE);
             if (backgroundImageStr != null && !backgroundImageStr.equals(CssConstants.NONE)) {
                 String backgroundRepeatStr = cssProps.get(CssConstants.BACKGROUND_REPEAT);
-                PdfImageXObject image = context.getResourceResolver().retrieveImage(CssUtils.extractUrl(backgroundImageStr));
+                PdfXObject image = context.getResourceResolver().retrieveImage(CssUtils.extractUrl(backgroundImageStr));
                 boolean repeatX = true, repeatY = true;
+                BackgroundRepeatValue repeatXValue = BackgroundRepeatValue.REPEAT;
+                BackgroundRepeatValue repeatYValue = BackgroundRepeatValue.REPEAT;
                 if (backgroundRepeatStr != null) {
                     repeatX = backgroundRepeatStr.equals(CssConstants.REPEAT) || backgroundRepeatStr.equals(CssConstants.REPEAT_X);
+                    repeatXValue = repeatX ? BackgroundRepeatValue.REPEAT : BackgroundRepeatValue.NO_REPEAT;
                     repeatY = backgroundRepeatStr.equals(CssConstants.REPEAT) || backgroundRepeatStr.equals(CssConstants.REPEAT_Y);
+                    repeatYValue = repeatY ? BackgroundRepeatValue.REPEAT : BackgroundRepeatValue.NO_REPEAT;
                 }
                 if (image != null) {
-                    BackgroundImage backgroundImage = new BackgroundImage(image, repeatX, repeatY);
+                    BackgroundImage backgroundImage = new BackgroundImage.Builder()
+                            .setImage(image)
+                            .setBackgroundRepeat(new BackgroundRepeat(repeatXValue, repeatYValue))
+                            .build();
                     element.setProperty(Property.BACKGROUND_IMAGE, backgroundImage);
                 }
             }

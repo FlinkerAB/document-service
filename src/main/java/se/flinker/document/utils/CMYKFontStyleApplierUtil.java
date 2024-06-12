@@ -7,24 +7,23 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.itextpdf.html2pdf.LogMessageConstant;
 import com.itextpdf.html2pdf.attach.ProcessorContext;
 import com.itextpdf.html2pdf.css.CssConstants;
-import com.itextpdf.io.util.MessageFormatUtil;
 import com.itextpdf.kernel.colors.Color;
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.pdf.canvas.PdfCanvasConstants;
 import com.itextpdf.layout.IPropertyContainer;
-import com.itextpdf.layout.property.BaseDirection;
-import com.itextpdf.layout.property.HorizontalAlignment;
-import com.itextpdf.layout.property.Leading;
-import com.itextpdf.layout.property.Property;
-import com.itextpdf.layout.property.TextAlignment;
-import com.itextpdf.layout.property.TransparentColor;
-import com.itextpdf.layout.property.Underline;
-import com.itextpdf.layout.property.UnitValue;
-import com.itextpdf.styledxmlparser.css.util.CssUtils;
+import com.itextpdf.layout.properties.BaseDirection;
+import com.itextpdf.layout.properties.HorizontalAlignment;
+import com.itextpdf.layout.properties.Leading;
+import com.itextpdf.layout.properties.Property;
+import com.itextpdf.layout.properties.TextAlignment;
+import com.itextpdf.layout.properties.TransparentColor;
+import com.itextpdf.layout.properties.Underline;
+import com.itextpdf.layout.properties.UnitValue;
+import com.itextpdf.styledxmlparser.css.CommonCssConstants;
+import com.itextpdf.styledxmlparser.css.util.CssDimensionParsingUtils;
 import com.itextpdf.styledxmlparser.exceptions.StyledXMLParserException;
 import com.itextpdf.styledxmlparser.node.IElementNode;
 import com.itextpdf.styledxmlparser.node.IStylesContainer;
@@ -52,7 +51,7 @@ private CMYKFontStyleApplierUtil() {
  * @param element the element
  */
 public static void applyFontStyles(Map<String, String> cssProps, ProcessorContext context, IStylesContainer stylesContainer, IPropertyContainer element) {
-    float em = CssUtils.parseAbsoluteLength(cssProps.get(CssConstants.FONT_SIZE));
+    float em = CssDimensionParsingUtils.parseAbsoluteLength(cssProps.get(CssConstants.FONT_SIZE));
     float rem = context.getCssContext().getRootFontSize();
     if (em != 0) {
         element.setProperty(Property.FONT_SIZE, UnitValue.createPointValue(em));
@@ -72,7 +71,7 @@ public static void applyFontStyles(Map<String, String> cssProps, ProcessorContex
     if (cssColorPropValue != null) {
         TransparentColor transparentColor;
         if (!CssConstants.TRANSPARENT.equals(cssColorPropValue)) {
-            float[] rgbaColor = CssUtils.parseRgbaColor(cssColorPropValue);
+            float[] rgbaColor = CssDimensionParsingUtils.parseRgbaColor(cssColorPropValue);
             Color color = Color.convertRgbToCmyk(new DeviceRgb(rgbaColor[0], rgbaColor[1], rgbaColor[2]));
             float opacity = rgbaColor[3];
             transparentColor = new TransparentColor(color, opacity);
@@ -117,7 +116,7 @@ public static void applyFontStyles(Map<String, String> cssProps, ProcessorContex
         List<Underline> underlineList = new ArrayList<>();
         for (String textDecoration : textDecorations) {
             if (CssConstants.BLINK.equals(textDecoration)) {
-                logger.error(LogMessageConstant.TEXT_DECORATION_BLINK_NOT_SUPPORTED);
+                logger.error("TEXT_DECORATION_BLINK_NOT_SUPPORTED");
             } else if (CssConstants.LINE_THROUGH.equals(textDecoration)) {
                 underlineList.add(new Underline(null, .75f, 0, 0, 1 / 4f, PdfCanvasConstants.LineCapStyle.BUTT));
             } else if (CssConstants.OVERLINE.equals(textDecoration)) {
@@ -135,19 +134,19 @@ public static void applyFontStyles(Map<String, String> cssProps, ProcessorContex
 
     String textIndent = cssProps.get(CssConstants.TEXT_INDENT);
     if (textIndent != null) {
-        UnitValue textIndentValue = CssUtils.parseLengthValueToPt(textIndent, em, rem);
+        UnitValue textIndentValue = CssDimensionParsingUtils.parseLengthValueToPt(textIndent, em, rem);
         if (textIndentValue != null) {
             if (textIndentValue.isPointValue()) {
                 element.setProperty(Property.FIRST_LINE_INDENT, textIndentValue.getValue());
             } else {
-                logger.error(MessageFormatUtil.format(LogMessageConstant.CSS_PROPERTY_IN_PERCENTS_NOT_SUPPORTED, CssConstants.TEXT_INDENT));
+                logger.error("CSS_PROPERTY_IN_PERCENTS_NOT_SUPPORTED");
             }
         }
     }
 
     String letterSpacing = cssProps.get(CssConstants.LETTER_SPACING);
     if (letterSpacing != null && !letterSpacing.equals(CssConstants.NORMAL)) {
-        UnitValue letterSpacingValue = CssUtils.parseLengthValueToPt(letterSpacing, em, rem);
+        UnitValue letterSpacingValue = CssDimensionParsingUtils.parseLengthValueToPt(letterSpacing, em, rem);
         if (letterSpacingValue.isPointValue()) {
             element.setProperty(Property.CHARACTER_SPACING, letterSpacingValue.getValue());
         } else {
@@ -157,7 +156,7 @@ public static void applyFontStyles(Map<String, String> cssProps, ProcessorContex
 
     String wordSpacing = cssProps.get(CssConstants.WORD_SPACING);
     if (wordSpacing != null) {
-        UnitValue wordSpacingValue = CssUtils.parseLengthValueToPt(wordSpacing, em, rem);
+        UnitValue wordSpacingValue = CssDimensionParsingUtils.parseLengthValueToPt(wordSpacing, em, rem);
         if (wordSpacingValue != null) {
             if (wordSpacingValue.isPointValue()) {
                 element.setProperty(Property.WORD_SPACING, wordSpacingValue.getValue());
@@ -172,13 +171,11 @@ public static void applyFontStyles(Map<String, String> cssProps, ProcessorContex
     // nevertheless some browsers compute it as normal so we apply the same behaviour.
     // What's more, it's basically the same thing as if lineHeight is not set in the first place
     if (lineHeight != null && !CssConstants.NORMAL.equals(lineHeight) && !CssConstants.AUTO.equals(lineHeight)) {
-        if (CssUtils.isNumericValue(lineHeight)) {
-            Float mult = CssUtils.parseFloat(lineHeight);
-            if (mult != null) {
-                element.setProperty(Property.LEADING, new Leading(Leading.MULTIPLIED, mult));
-            }
+        Float mult = CssDimensionParsingUtils.parseFloat(lineHeight);
+        if (mult != null) {
+            element.setProperty(Property.LEADING, new Leading(Leading.MULTIPLIED, mult));
         } else {
-            UnitValue lineHeightValue = CssUtils.parseLengthValueToPt(lineHeight, em, rem);
+            UnitValue lineHeightValue = CssDimensionParsingUtils.parseLengthValueToPt(lineHeight, em, rem);
             if (lineHeightValue != null && lineHeightValue.isPointValue()) {
                 element.setProperty(Property.LEADING, new Leading(Leading.FIXED, lineHeightValue.getValue()));
             } else if (lineHeightValue != null) {
@@ -197,7 +194,7 @@ public static void applyFontStyles(Map<String, String> cssProps, ProcessorContex
  * @return the font size value as a {@code float}
  */
 public static float parseAbsoluteFontSize(String fontSizeValue) {
-    if (CssConstants.FONT_ABSOLUTE_SIZE_KEYWORDS.contains(fontSizeValue)) {
+    if (CommonCssConstants.FONT_ABSOLUTE_SIZE_KEYWORDS_VALUES.containsKey(fontSizeValue)) {
         switch (fontSizeValue) {
             case CssConstants.XX_SMALL:
                 fontSizeValue = "9px";
@@ -229,7 +226,7 @@ public static float parseAbsoluteFontSize(String fontSizeValue) {
         /* Styled XML Parser will throw an exception when it can't parse the given value
            but in html2pdf, we want to fall back to the default value of 0
          */
-        return CssUtils.parseAbsoluteLength(fontSizeValue);
+        return CssDimensionParsingUtils.parseAbsoluteLength(fontSizeValue);
     } catch (StyledXMLParserException sxpe) {
         return 0f;
     }
@@ -248,7 +245,7 @@ public static float parseRelativeFontSize(final String relativeFontSizeValue, fi
     } else if (CssConstants.LARGER.equals(relativeFontSizeValue)) {
         return (float)(baseValue * 1.2);
     }
-    return CssUtils.parseRelativeValue(relativeFontSizeValue, baseValue);
+    return CssDimensionParsingUtils.parseRelativeValue(relativeFontSizeValue, baseValue);
 }
 
 }
