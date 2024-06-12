@@ -12,7 +12,7 @@
 
 	<groupId>se.flinker</groupId>
 	<artifactId>document-service</artifactId>
-	<version>1.3-SNAPSHOT</version>
+	<version>1.3.RELEASE</version>
 	<name>document-service</name>
 	<description>Service for generating document</description>
 
