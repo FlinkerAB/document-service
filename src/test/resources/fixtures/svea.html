@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Leasing Agreement</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1d1d1d;
+            font-family: "Poppins", sans-serif;
+            font-optical-sizing: auto;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        div.page {
+            position: relative;
+            width: 8.27in;
+            min-height: 11.69in;
+            margin: 0.4cm auto;
+            padding: 35px;
+            background-color: #ffffff;
+            page-break-after: always;
+            z-index: 1;
+            overflow: hidden;
+            box-shadow: 0 8px 8px rgba(0, 0, 0, 0.15), 0 8px 8px rgba(0, 0, 0, 0.15),
+                0 8px 8px rgba(0, 0, 0, 0.15), 0 8px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        @media print {
+            div.page {
+                margin: 0;
+                page-break-after: always;
+                box-shadow: none;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+
+        p {
+            margin: 0;
+            padding: 0;
+            color: #000000;
+            line-height: 1.3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td, th {
+            padding: 0;
+        }
+
+        input[type=text] {
+            display: block;
+            width: 100%;
+            border: 0;
+            outline: 0;
+            padding: 0;
+            font-family: inherit;
+            background-color: #f1f4ff;
+        }
+
+        input[type=checkbox] {
+            margin: 2px 5px 1px 0;
+        }
+
+        textarea {
+            display: block;
+            width: 100%;
+            border: 0;
+            outline: 0;
+            padding: 0;
+            font-family: inherit;
+            background-color: #f1f4ff;
+            resize: none;
+        }
+
+        .valign-top { vertical-align: top; }
+        .valign-middle { vertical-align: middle; }
+        .valign-bottom { vertical-align: bottom; }
+
+        .d-block { display: block; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .ml-auto { margin-left: auto; }
+
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+        .text-justify { text-align: justify; }
+        .text-justify-last { text-align-last: justify; }
+        .text-italic { font-style: italic; }
+        .text-underline { text-decoration: underline; }
+
+        .fw-400 { font-weight: 400; }
+        .fw-500 { font-weight: 500; }
+        .fw-600 { font-weight: 600; }
+        .fw-700 { font-weight: 700; }
+        .fw-800 { font-weight: 800; }
+        .fw-900 { font-weight: 900; }
+
+        .mt-0 { margin-top: 0 !important; }
+        .mt-5 { margin-top: 5px; }
+        .mt-10 { margin-top: 10px; }
+
+        .px-5 { padding-left: 5px; padding-right: 5px; }
+
+        .w-100 {
+            width: 100%;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        a:hover { color: #213d6d; }
+
+        .logo p {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .logo img {
+            display: block;
+            width: 120px;
+            margin: 0 0 0 auto;
+        }
+
+        .contract-details {
+            width: 240px;
+            margin: 25px 0 15px auto;
+            table-layout: fixed;
+        }
+
+        .contract-details td {
+            padding: 1px 2px 0 2px;
+            border: 1px solid #000000;
+        }
+
+        .contract-details td * {
+            font-size: 8px;
+        }
+
+        .party-details {
+            margin: 0;
+            table-layout: fixed;
+        }
+
+        .party-details th {
+            border-left: 4px solid #00b5cb;
+            border-right: 4px solid #00b5cb;
+            border-bottom: 4px solid #00b5cb;
+        }
+
+        .party-details th:first-child {
+            border-left: 0;
+        }
+
+        .party-details th:last-child {
+            border-right: 0;
+        }
+
+        .party-details th p {
+            font-size: 11px;
+            font-weight: 400;
+            text-align: left;
+        }
+
+        .party-details td {
+            padding-top: 1px;
+            border-left: 1px solid #000000;
+            border-right: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+        }
+
+        .party-details td:first-child {
+            border-left: 0;
+        }
+
+        .party-details td:last-child {
+            border-right: 0;
+        }
+
+        .party-details td * {
+            font-size: 8px;
+        }
+
+        .party-details th:not(:first-child),
+        .party-details td:not(:first-child) {
+            padding: 0 0 0 3px;
+        }
+
+        .leasing-object {
+            margin: 15px 0 0 0;
+        }
+
+        .leasing-object th {
+            border-bottom: 4px solid #00b5cb;
+        }
+        
+        .leasing-object th p {
+            font-size: 11px;
+            font-weight: 400;
+            text-align: left;
+        }
+
+        .leasing-object th p span {
+            font-size: 8px;
+        }
+
+        .leasing-object td {
+            border-left: 1px solid #000000;
+            border-right: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+        }
+
+        .leasing-object td textarea {
+            font-size: 8px;
+            padding: 2px;
+            height: 50px;
+        }
+
+        .terms-conditions {
+            margin: 15px 0 0 0;
+            table-layout: fixed;
+        }
+
+        .terms-conditions th {
+            border-bottom: 4px solid #00b5cb;
+        }
+        
+        .terms-conditions th p {
+            font-size: 11px;
+            font-weight: 400;
+            text-align: left;
+        }
+
+        .terms-conditions td {
+            padding-top: 1px;
+            border-left: 1px solid #000000;
+            border-right: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+        }
+
+        .terms-conditions td:first-child {
+            border-left: 0;
+        }
+
+        .terms-conditions td:last-child {
+            border-right: 0;
+        }
+
+        .terms-conditions td * {
+            font-size: 8px;
+        }
+
+        .terms-conditions th:not(:first-child),
+        .terms-conditions td:not(:first-child) {
+            padding: 0 0 0 3px;
+        }
+
+        .signatory-identity-check {
+            margin: 15px 0 0 0;
+        }
+
+        .signatory-identity-check th {
+            border-left: 4px solid #00b5cb;
+            border-right: 4px solid #00b5cb;
+            border-bottom: 4px solid #00b5cb;
+        }
+
+        .signatory-identity-check th:first-child {
+            border-left: 0;
+        }
+
+        .signatory-identity-check th:last-child {
+            border-right: 0;
+        }
+
+        .signatory-identity-check th p {
+            font-size: 11px;
+            font-weight: 400;
+            text-align: left;
+        }
+
+        .signatory-identity-check td {
+            padding-top: 1px;
+            vertical-align: top;
+            border-left: 1px solid #000000;
+            border-right: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+        }
+
+        .signatory-identity-check td:first-child {
+            border-left: 0;
+        }
+
+        .signatory-identity-check td:last-child {
+            border-right: 0;
+        }
+
+        .signatory-identity-check td * {
+            font-size: 8px;
+        }
+
+        .signatory-identity-check th:not(:first-child),
+        .signatory-identity-check td:not(:first-child) {
+            padding: 0 0 0 3px;
+        }
+
+        .signatory-identity-check tr:nth-child(1) td {
+            padding-right: 5px;
+        }
+
+        .lessee-ownership-check {
+            margin: 5px 0 0 0;
+        }
+
+        .lessee-ownership-check th {
+            padding: 5px 0;
+            border-bottom: 1px solid #000000;
+        }
+
+        .lessee-ownership-check th p {
+            font-size: 8px;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .lessee-ownership-check td {
+            padding-top: 1px;
+            vertical-align: top;
+            border-left: 1px solid #000000;
+            border-right: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+        }
+
+        .lessee-ownership-check td:first-child {
+            border-left: 0;
+        }
+
+        .lessee-ownership-check td:last-child {
+            border-right: 0;
+        }
+
+        .lessee-ownership-check td * {
+            font-size: 8px;
+        }
+
+        .lessee-ownership-check th:not(:first-child),
+        .lessee-ownership-check td:not(:first-child) {
+            padding: 0 0 0 3px;
+        }
+
+        .leese-leesor-heading p {
+            font-size: 11px;
+        }
+
+        .leese-leesor {
+            margin: 5px 0 0 0;
+            table-layout: fixed;
+        }
+
+        .leese-leesor th {
+            border-left: 4px solid #00b5cb;
+            border-right: 4px solid #00b5cb;
+            border-bottom: 4px solid #00b5cb;
+        }
+
+        .leese-leesor th:first-child {
+            border-left: 0;
+        }
+
+        .leese-leesor th:last-child {
+            border-right: 0;
+        }
+
+        .leese-leesor th p {
+            font-size: 11px;
+            font-weight: 400;
+            text-align: left;
+        }
+
+        .leese-leesor td {
+            padding-top: 1px;
+            border-left: 1px solid #000000;
+            border-right: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+        }
+
+        .leese-leesor td:first-child {
+            border-left: 0;
+        }
+
+        .leese-leesor td:last-child {
+            border-right: 0;
+        }
+
+        .leese-leesor td * {
+            font-size: 8px;
+        }
+
+        .leese-leesor th:not(:first-child),
+        .leese-leesor td:not(:first-child) {
+            padding: 0 0 0 3px;
+        }
+
+        .leese-leesor td .signature {
+            height: 15px;
+        }
+
+        .agreement-confirmation {
+            padding: 10px 0
+        }
+
+        .agreement-confirmation p {
+            font-size: 8px;
+            text-align: justify;
+        }
+
+        .guarantee-clause {
+            margin: 10px 0 0 0;
+        }
+
+        .guarantee-clause th {
+            border-bottom: 4px solid #00b5cb;
+        }
+
+        .guarantee-clause th p {
+            font-size: 11px;
+            font-weight: 400;
+            text-align: left;
+        }
+
+        .guarantee-clause th p span {
+            font-size: 7.5px;
+        }
+
+        .guarantee-clause td {
+            padding-top: 1px;
+            border-left: 1px solid #000000;
+            border-right: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+        }
+
+        .guarantee-clause td:first-child {
+            border-left: 0;
+        }
+
+        .guarantee-clause td:last-child {
+            border-right: 0;
+        }
+
+        .guarantee-clause td * {
+            font-size: 8px;
+        }
+        
+        .guarantee-clause th:not(:first-child),
+        .guarantee-clause td:not(:first-child) {
+            padding: 0 0 0 3px;
+        }
+
+        .guarantee-clause td .signature {
+            height: 15px;
+        }
+
+        .note {
+            padding: 8px 0 0 0;
+        }
+
+        .note p {
+            font-size: 11px;
+            font-weight: 700
+        }
+
+        .column-split {
+            column-count: 2;
+            column-gap: 20px;
+            margin: 15px 0 0 0;
+        }
+
+        .column-split p {
+            font-size: 7.5px;
+        }
+
+        .column-split li {
+            font-size: 7.5px;
+            margin: 3px 0 0 0;
+        }
+
+        .column-split p.main-heading {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 20px 0 0 0;
+        }
+
+        .column-split p.heading {
+            font-size: 8px;
+            font-weight: 700;
+            margin: 5px 0 0 0;
+        }
+
+        .column-split .sub-heading {
+            font-size: 7.5px;
+            font-weight: 700;
+            margin: 5px 0 0 0;
+        }
+
+        .column-split p.heading:first-child {
+            margin: 0;
+        }
+
+        .column-split ol {
+            padding: 0;
+            margin: 0;
+            list-style-position: inside;
+        }
+
+        .flex-row {
+            display: flex;
+            align-items: center;
+        }
+
+        .flex-item {
+            flex: 1;
+        }
+
+        .flex-item p {
+            white-space: nowrap;
+        }
+
+        .circle-number {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0;
+            left: 12px;
+            border-radius: 50%;
+            padding-top: 2px;
+            width: 17px;
+            height: 17px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #ffffff;
+            text-align: center;
+            background-color: #00b5cb;
+        }
+
+        .footer {
+            position: absolute;
+            width: calc(100% - 70px);
+            left: 35px;
+            bottom: 35px;
+            border-top: 2px solid #00b5cb;
+        }
+        
+        .footer td {
+            vertical-align: top;
+            padding-top: 3px;
+        }
+
+        .footer td:last-child {
+            width: 100px;
+        }
+
+        .footer p {
+            font-size: 7.5px;
+        }
+
+        .footer .bold {
+            font-size: 8px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Page 1 -->
+    <div class="page">
+        <div class="page-content">
+            <div>
+                <table class="logo">
+                    <thead>
+                        <tr>
+                            <td>
+                                <p>LEASINGAVTAL</p>
+                            </td>
+                            <td>
+                                <img src="./images/svea-logo.png" alt="Logo">
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <div>
+                <table class="contract-details">
+                    <tr>
+                        <td>
+                            <p>Avtalsdatum</p>
+                            <input type="text">
+                        </td>
+                        <td>
+                            <p>Avtalsnummer</p>
+                            <input type="text">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div>
+                <table class="party-details">
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                <p>Leasetagare</p>
+                            </th>
+                            <th colspan="2">
+                                <p>Leverantör</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="2">
+                                <p>Namn</p>
+                                <input type="text">
+                            </td>
+                            <td colspan="2">
+                                <p>Namn</p>
+                                <input type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Organisationsnummer</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Telefon</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Organisationsnummer</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Telefon</p>
+                                <input type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Adress</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Besöksadress</p>
+                                <input type="text">
+                            </td>
+                            <td colspan="2">
+                                <p>Utdelningsadress</p>
+                                <input type="text">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="party-details">
+                    <tbody>
+                        <tr>
+                            <td width="100">
+                                <p>Postnummer</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Postort</p>
+                                <input type="text">
+                            </td>
+                            <td width="100">
+                                <p>Postnummer</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Postort</p>
+                                <input type="text">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="party-details">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>Kontaktperson</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>E-postadress</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Kontaktperson</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>E-postadress</p>
+                                <input type="text">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <table class="leasing-object">
+                    <thead>
+                        <tr>
+                            <th>
+                                <p>Leasingobjekt <span>(Objektspecifkation, tillverkningsår, extra utrustning m. m.)</span></p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <textarea></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <table class="terms-conditions">
+                    <thead>
+                        <tr>
+                            <th colspan="5">
+                                <p>Villkor (samtliga belopp är angivna exklusive mervärdesskatt)</span></p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>Betalningsperiod</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Betalningssätt</p>
+                                <p>Förskott</p>
+                            </td>
+                            <td>
+                                <p>Restvärde</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Avtalstid</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Månadskostnad</p>
+                                <input type="text">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <table class="leasing-object">
+                    <thead>
+                        <tr>
+                            <th>
+                                <p>Särskilda villkor</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <textarea></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <div class="circle-number">1</div>
+                <table class="signatory-identity-check">
+                    <thead>
+                        <tr>
+                            <th width="50%">
+                                <p>Legitimationskontroll frmatecknare 1</p>
+                            </th>
+                            <th width="50%" colspan="2">
+                                <p>Legitimationskontroll frmatecknare 2</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>Typ</p>
+                                <div class="flex-row">
+                                    <div class="flex-row flex-item">
+                                        <input type="checkbox">
+                                        <p>Körkort</p>
+                                    </div>
+                                    <div class="flex-row flex-item">
+                                        <input type="checkbox">
+                                        <p>SIS</p>
+                                    </div>
+                                    <div class="flex-row flex-item">
+                                        <input type="checkbox">
+                                        <p>EU-pass</p>
+                                    </div>
+                                    <div class="flex-row flex-item">
+                                        <input type="checkbox">
+                                        <p>Nationellt ID-kort</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p>Typ</p>
+                                <div class="flex-row">
+                                    <div class="flex-row flex-item">
+                                        <input type="checkbox">
+                                        <p>Körkort</p>
+                                    </div>
+                                    <div class="flex-row flex-item">
+                                        <input type="checkbox">
+                                        <p>SIS</p>
+                                    </div>
+                                    <div class="flex-row flex-item">
+                                        <input type="checkbox">
+                                        <p>EU-pass</p>
+                                    </div>
+                                    <div class="flex-row flex-item">
+                                        <input type="checkbox">
+                                        <p>Nationellt ID-kort</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td width="40" rowspan="2">
+                                <p>Signatur<br>leverantör</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Leg nr</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Leg nr</p>
+                                <input type="text">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <div class="circle-number">2</div>
+                <table class="lessee-ownership-check">
+                    <thead>
+                        <tr>
+                            <th colspan="6">
+                                <p>Äger någon/några fysiska personer direkt eller indirekt (via bolag) mer än 25% av Leasetagaren?</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3">
+                                <div class="flex-row">
+                                    <div class="flex-row flex-item">
+                                        <input type="checkbox">
+                                        <p>Nej</p>
+                                    </div>
+                                    <div class="flex-row flex-item">
+                                        <input type="checkbox">
+                                        <p>Ja, ange vem/vilka</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p>Namn</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Personnummer</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Andel i %</p>
+                                <input type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="222">
+                                <p>Namn</p>
+                                <input type="text">
+                            </td>
+                            <td width="90">
+                                <p>Personnummer</p>
+                                <input type="text">
+                            </td>
+                            <td width="50">
+                                <p>Andel i %</p>
+                                <input type="text">
+                            </td>
+                            <td width="222">
+                                <p>Namn</p>
+                                <input type="text">
+                            </td>
+                            <td width="90">
+                                <p>Personnummer</p>
+                                <input type="text">
+                            </td>
+                            <td width="50">
+                                <p>Andel i %</p>
+                                <input type="text">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="agreement-confirmation">
+                <p>Detta avtal har upprättats i två likalydande exemplar, av vilka Leasetagaren och Leasegivaren (Svea Bank AB (publ)) tagit var sitt. Avtalet är bindande för Leasetagaren genom dennes underskrift på Avtalet och för Leasegivaren när bolaget undertecknat Avtalet. Parterna bekräftar härmed att de tagit del av och godkänt samtliga villkor enligt denna sida samt enligt ”Allmänna villkor SE Leasing 2023-08-31” vilka bifogas detta Avtal. Observera att leasing av lös egendom bland annat innebär att Leasetagaren väljer Leasingobjekt och Leverantör samt står riskerna för inköp, funktion och användning.</p>
+            </div>
+
+            <div>
+                <div class="circle-number">3</div>
+                <div class="leese-leesor-heading">
+                    <p>Underskrifter – Firmateckning</p>
+                </div>
+                <table class="leese-leesor">
+                    <thead>
+                        <tr>
+                            <th>
+                                <p>Leasetagaren</p>
+                            </th>
+                            <th>
+                                <p>Leasegivaren Svea Bank AB (publ)</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>Ort och datum</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Ort och datum</p>
+                                <input type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Underskrift</p>
+                                <div class="signature"></div>
+                            </td>
+                            <td>
+                                <p>Underskrift</p>
+                                <div class="signature"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Namnförtydligande och befattning</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Namnförtydligande</p>
+                                <input type="text">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <div class="circle-number">4</div>
+                <table class="guarantee-clause">
+                    <thead>
+                        <tr>
+                            <th colspan="4">
+                                <p>Borgen <span>För Leasetagarens förpliktelser enligt detta avtal tecknas härigenom borgen såsom för egen skuld. Jag/Vi har även tagit del av skriftlig upplysning angående borgensåtagande.</span></p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>Borgensman namn/frma</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Ort och datum</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Borgensman namn/frma</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Ort och datum</p>
+                                <input type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p>Underskrift</p>
+                                <div class="signature"></div>
+                            </td>
+                            <td colspan="2">
+                                <p>Underskrift</p>
+                                <div class="signature"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Namnförtydligande</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Person-/Organisationsnummer</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Namnförtydligande</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Person-/Organisationsnummer</p>
+                                <input type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Adress</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Fotoleg - typ:</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Adress</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Fotoleg - typ:</p>
+                                <input type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Postadress</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Telefonnummer</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Postadress</p>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <p>Telefonnummer</p>
+                                <input type="text">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="note">
+                <p>OBS! En vidimerad kopia på frmatecknares ID-handling ska bifogas Leasingavtalet. </p>
+            </div>
+
+            <div class="footer">
+                <table>
+                    <tr>
+                        <td>
+                            <p class="bold">Svea Bank AB (publ) </p>
+                            <p>SE-169 81 Solna </p>
+                            <p>Org. nr: 556158–7634 </p>
+                            <p>Säte: Stockholm</p>
+                        </td>
+                        <td>
+                            <p><a href="https://www.svea.com/" target="_blank">svea.com</a></p>
+                            <p><a href="mailto:info@svea.com">info@svea.com</a></p>
+                            <p><a href="tel:+4687359000">Telefon: +46 8 7359000</a></p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 2 -->
+    <div class="page">
+        <div class="page-content">
+            <table>
+                <thead>
+                    <tr>
+                        <td>
+                            <p class="text-15 fw-700">ALLMÄNNA VILLKOR SE LEASING 2023-08-31</p>
+                        </td>
+                        <td>
+                            <p class="text-7 text-right">1 (2)</p>
+                        </td>
+                    </tr>
+                </thead>
+            </table>
+
+            <div class="column-split">
+                <p class="heading">1 INLEDNING - PARTER</p>
+                <p>Dessa allmänna villkor avser leasing av den egendom som finns specificerad i leasingavtalet (<span class="fw-700">”Leasingobjektet”</span> respektive <span class="fw-700">”Leasingavtalet”</span>). <span class="fw-700">Leasetagaren</span> har självständigt valt Leasingobjektet och leverantören (<span class="fw-700">”Leverantören”</span>) av Leasingobjektet. Leveransvillkoren för Leasingobjektet har avtalats mellan Leasetagaren och Leverantören. Därefter har <span class="fw-700">Leasegivaren</span> (Svea Bank AB (publ), 556158-7634) köpt Leasingobjektet från Leverantören för att leasa ut till Leasetagaren på de villkor som anges i Leasingavtalet och dessa allmänna villkor. Leverantören är inte part i Leasingavtalet.</p>
+                <p class="heading">2 LEASINGPERIOD</p>
+                <p>Leasingavtalet gäller från den dag Leasingavtalet undertecknats av båda parter och gäller till och med avtalstidens utgång i enlighet med Leasingavtalet. Leasingperioden, för vilken avgift ska betalas, inleds (om inte annat anges i Leasingavtalet) om leverans eller avhämtning av Leasingobjektet har skett mellan dag 1 - 10 i en kalendermånad, den första dagen i närmast efterföljande kalendermånad. Om leverans/avhämtning har skett efter dag 10 i en kalendermånad inleds leasingperioden den första dagen i kalendermånaden efter den närmast efterföljande kalendermånaden. Om avgiften betalas kalenderkvartalsvis (januari – mars, april - juni, juli – september eller oktober – december) och Leasingobjektet levereras/avhämtas på överenskommen plats före eller senast dag 10 den tredje månaden i kalenderkvartalet, inleds leasingperioden första dagen nästkommande kalenderkvartal. Om leverans/avhämtning av objekt sker efter dag 10 den tredje kalenderkvartalsmånaden inleds leasingperioden den första dagen i den kalendermånad som infaller närmast efter nästa kalenderkvartals slut.</p>
+                <p class="heading">3 UPPSÄGNING OCH FÖRLÄNGNING</p>
+                <p>Vardera parten kan säga upp Leasingavtalet genom skriftlig uppsägning senast sex (6) månader före utgången av leasingperioden eller pågående förlängningsperiod. Om Leasingavtalet inte sägs upp förlängs det, på i övrigt oförändrade villkor, med tolv (12) månader i taget efter leasingperiodens eller förlängningsperiodens slut.</p>
+                <p class="heading">4 UNDERSÖKNING AV LEASINGOBJEKTET, LEVERANSGODKÄNNANDE OCH ANNULLERING MED MERA</p>
+                <p>Leasetagaren ska på egen bekostnad vidta de åtgärder som krävs för att ta emot Leasingobjektet för Leasegivarens räkning från Leverantören vid av Leasegivaren föreskriven tidpunkt. Det är vidare Leasetagarens ansvar att vid mottagande av Leasingobjektet undersöka detta noggrant samt omedelbart skriftligen meddela Leasegivaren om leveransen godkänns genom att underteckna leveransgodkännandet och överlämna det till Leasegivaren. Genom att underteckna leveransgodkännandet godkänner Leasetagaren Leasingobjektet och godtar leverans av detta för Leasegivarens räkning och avsäger sig, gentemot Leasegivaren, eventuella rättigheter att göra gällande fel och brister i Leasingobjektet. Om Leasingobjektet är behäftat med fel ska Leasetagaren för Leasegivarens räkning till Leverantören skriftligen reklamera felet senast inom fem (5) arbetsdagar från mottagandet. Leasegivaren ska tillställas en kopia av reklamationen. Vid utebliven reklamation ska Leasetagaren anses ha godkänt Leasingobjektet på samma sätt som om ett leveransgodkännande undertecknats av Leasetagaren.</p>
+                <p>Vid leverans av Leasingobjektet till Leasetagaren övergår ansvaret för Leasingobjektet till Leasetagaren men äganderätten till Leasingobjektet förblir hos Leasegivaren. Leasegivaren eller representant för denne har rätt att när som helst undersöka Leasingobjektet hos Leasetagaren. Kostnader såsom dröjsmålsränta etcetera som drabbar Leasegivaren på grund av Leasetagarens dröjsmål med leveransgodkännandet ska erläggas av Leasetagaren vid anfordran. Om Leasingobjektet inte levererats inom två (2) månader från underskrift av Leasingavtalet, eller inom annan tid som Leasetagaren och Leasegivaren avtalar, har Leasegivaren utan skadeståndsansvar eller annat ansvar rätt att annullera Leasingavtalet. Annulleras Leasingavtalet i enlighet härmed ska Leasetagaren, vid anfordran från Leasegivaren, utge av Leasegivaren vid var tid tillämpade hanteringsavgifter för uppläggning, avisering och försäkring. Om detta Leasingavtal ersätter ett tidigare Leasingavtal mellan Leasetagaren och annan leasegivare än Leasegivaren åvilar det Leasetagaren att kontrollera att Leverantören fullgjort sitt köp av Leasingobjektet från den tidigare leasegivaren. Leasegivaren tar gentemot Leasetagaren inget ansvar för att så skett.</p>
+                <p>Leastagaren är skyldig att ta emot, eller om så avtalats, hämta Leasingobjektet. Vägrar Leastagaren mottagande av leverans eller underlåter denne avhämtning är Leastagaren ändå skyldig att erlägga avgifter (och hyror) enligt Avtalet samt svara för de kostnader som vägran eller underlåtenheten medför för Leasegivaren.</p>
+                <p class="heading">5 ÄGANDERÄTT OCH NYTTJANDERÄTT AVSEENDE LEASINGOBJEKTET</p>
+                <p>Genom Leasingavtalet och dessa allmänna villkor upplåter Leasegivaren nyttjanderätten till Leasingobjektet till Leasetagaren. Leasetagaren får inte genom Leasingavtalet äganderätt till Leasingobjektet utan Leasingobjektet är och förblir Leasegivarens egendom. Leasegivaren äger rätt att förse Leasingobjektet med en skylt eller annat märke som utvisar att det ägs av Leasegivaren. Sådan skyltning eller märkning får inte tas bort av Leasetagaren. Leasetagaren får inte:</p>
+                <p>1) pantsätta Leasingobjektet,</p>
+                <p>2) införliva Leasingobjektet i annan fast eller lös egendom,</p>
+                <p>3) överlåta eller uthyra Leasingobjektet,</p>
+                <p>4) föra Leasingobjektet utanför Sverige (undantag gäller för bärbar utrustning)</p>
+                <p>5) utan Leasegivarens skriftliga medgivande flytta Leasingobjektet från i Leasingavtalet angiven installationsadress,</p>
+                <p>6) uppgradera och/eller vidtaga ändringar i Leasingobjektet; eller</p>
+                <p>7) nyttja Leasingobjektet i strid mot gällande lagar, författningar eller myndighetsbeslut.</p>
+                <p class="heading">6 INTERIMSAVGIFT OCH ANDRA AVGIFTER</p>
+                <p>Ska Leasegivaren erlägga betalning till Leverantören innan leasingperioden inletts enligt punkt 2 ska interimsavgift (benämns som Leasingavgift på första fakturan med angivet tidsintervall) utgå från och med faktisk leveransdag till leasingperiodens början enligt punkt 2. Beroende på betalningsintervall enligt Leasingavtalet uppgår initialavgiften per dag till 1/30 eller 1/90, av beräknad månads- eller kvartalsavgift. Beräkningen av interimsavgift görs utifrån vilken avgift som tillämpats om leasingperioden startat vid leveransdagen. Betalning av interimsavgift ska erläggas av Leasetagaren vid anfordran från Leasegivaren. Leasetagaren ska i tillägg till avgift betala Leasegivaren hanteringsavgifter, till exempel för uppläggning (för närvarande standard 750 kronor), avisering (för närvarande standard 55 kronor/månad eller 85 kronor/kvartal), betalningspåminnelser och andra administrativa avgifter som hör till Leasingavtalet. Om Leasegivaren finner att kostnadsläget förändras får Leasegivaren förändra hanteringsavgifterna. Upplysning om gällande hanteringsavgifter lämnas vid förfrågan av Leasegivaren. Leasetagaren ska betala skatter och avgifter som är hänförliga till Leasingobjektet och dess nyttjande.</p>
+                <p class="heading">7 AVGIFT SAMT ÄNDRING AV DENNA</p>
+                <p>Leasetagaren erlägger avgiften, om inte annat anges nedan, i förskott med på Leasingavtalet stipulerat belopp under angiven avtalstid i enlighet med punkt 2. Leasegivaren får, med omedelbar verkan, ändra avgiften då:</p>
+                <p>1. Leverantören fakturerar Leasegivaren ett annat pris för Leasingobjektet än vad som tidigare har överenskommits</p>
+                <p>2. Leverantör, Leasetagare och Leasegivare har kommit överens om tillägg, utökning eller annan förändring av Leasingobjektet,</p>
+                <p>3. räntan ändras på den marknad där Leasegivaren refinansierar sig eller om det motiveras av lagstiftning, kreditpolitisk, penningpolitisk eller valutapolitisk åtgärd eller annan myndighetsåtgärd medför förändringar av de förutsättningar som legat till grund för den ursprungliga avgiftsberäkningen, eller</p>
+                <p>4. Leasingobjektet ska betalas i främmande valuta och växelkursen blir en annan än den som förutsatts av Leasegivaren vid beräkning av avgiften.</p>
+                <p class="heading">8 VÅRD AV LEASINGOBJEKTET</p>
+                <p>Leasetagaren ska på egen bekostnad väl vårda och underhålla Leasingobjektet i enlighet med Leverantörens och Leasegivarens anvisningar och rekommendationer så att det är i gott, funktionsdugligt och lagenligt skick. Vård och underhåll ska utföras så att Leasingobjektet, med undantag för värdeminskning orsakad av normal förslitning, bibehålls i det skick det levererades. Service, underhåll och reparation av Leasingobjektet får endast utföras av Leverantören eller ett av Leverantören rekommenderat företag. Inga ändringar eller modifieringar får göras av Leasingobjektet och endast Leverantörens reservdelar får monteras på Leasingobjektet om inte Leasegivarens skriftliga godkännande dessförinnan inhämtats. Leasetagaren har inte rätt att bruka Leasingobjektet utan att ha förvissat sig om att det uppfyller alla författnings- och avtalsenliga krav beträffande bland annat utrustning, skyddsanordningar och försäkringar. Leasegivaren ansvarar inte för hinder i nyttjandet av Leasingobjektet som kan uppstå på grund av föreskrift i författning eller myndighetsbeslut. Leasetagaren är skyldig att betala avgift för Leasingobjektet även om det inte kan användas. Leasetagaren ska, om Leasegivaren begär det, teckna och på egen bekostnad vidmakthålla service- och underhållsavtal för Leasingobjektet. Leasegivaren kan på service- och underhållsleverantörens önskan komma att fakturera kostnaden enligt service- och underhållsavtalet. Detta sker för serviceleverantörens räkning och innebär inte att Leasegivaren ansvarar för utförd service eller för de tjänster som leverantören tillhandahåller</p>
+                <p class="heading">9 LEVERANSFÖRSENING, FEL, SKADA MED MERA</p>
+                <p>Leasetagaren står all risk för att Leasingobjektet inte levereras i tid och för att det vid leverans inte är behäftat med fel eller inte är lämpligt för avsett ändamål. Leasegivaren garanterar inte Leasingobjektets kvalitet, prestanda och skick och inte heller dess lämplighet för Leasetagaren. Om Leverantören inte fullgör sina skyldigheter avseende Leasingobjektet kan Leasegivaren efter eget val överlåta sina rättigheter och skyldigheter mot Leverantören till Leasetagaren eller göra gällande påföljder mot Leverantören. Leasetagaren ska stå för alla kostnader som är förenade härmed. Om tredje man riktar anspråk mot Leasegivaren på grund av skada som förorsakats sak eller person och som uppkommit som ett resultat av Leasingobjektets köp, användning eller transport till och från Leasetagaren, ska Leasetagaren, oberoende av vållande, hålla Leasegivaren skadeslöst för detta. Vidare ska Leasetagaren hålla Leasegivaren skadeslöst för alla kostnader och allt ansvar som Leasegivaren kan drabbas av med anledning av Leasetagarens talan mot Leverantören. På begäran av Leasegivaren ska Leasetagaren förskottera sådana av Leasegivaren beräknade kostnader. Om Leasingobjektet förstörs, förloras eller förslits så att det blir obrukbart före leasingperiodens utgång åligger det Leasetagaren att genast underrätta Leasegivaren därom. Härvid äger Leasegivaren begära särskild säkerhet av Leasetagaren för förfallna och återstående avgifter och andra ersättningar enligt detta Leasingavtal.</p>
+                <p>Leasetagaren ska fullgöra samtliga skyldigheter mot Leasegivaren enligt detta Leasingavtal även om Leasingobjektet, oberoende av vållande, helt eller delvis skadas, förloras eller förstörs och helt eller delvis inte kan användas eller Leasingobjektet av andra orsaker inte kan användas av Leasetagaren.</p>
+                <p class="heading">10 FÖRSÄKRING OCH FÖRSÄKRINGSFALL</p>
+                <p>Leasegivaren tecknar försäkring avseende Leasingobjektet och är försäkringstagare om inget annat överenskommits. Kostnaden för försäkringen betalas av Leasetagaren vid anfordran. Om inte betalning för försäkringen erlagts inom tio (10) dagar efter förfallodatum upphör försäkringen att gälla. Av Leasegivaren tecknad försäkring omfattar skada på eller förlust av Leasingobjektet. På Leasetagarens begäran lämnar Leasegivaren upplysning om gällande försäkringsvillkor. Utöver skadeförsäkring ska Leasetagaren teckna och vidmakthålla nödvändig ansvarsförsäkring och i förekommande fall särskild transportförsäkring på Leasingobjektet som gäller för skada under transport. Leasegivaren har rätt att under Leasingperioden ändra premier och försäkringsvillkor med trettio dagars varsel. Vid försäkringsfall ska Leasetagaren omedelbart anmäla skadan till försäkringsbolaget och skicka en kopia till Leasegivaren. Leasetagaren ska betala självrisken till Leasegivaren. Leasegivaren avgör om reparation ska ske. Vid reparation ska försäkringsersättningen användas till betalning av reparationen. Leasetagaren ska svara för de reparationskostnader som inte täcks av försäkringsersättningen. Vid försäkringsfall där reparation inte ska utföras ska Leasegivaren behålla försäkringsersättningen. Leasetagaren ska i sådant fall betala alla förfallna obetalda avgifter och andra belopp, alla återstående avgifter under Leasingperioden samt restvärdet som framgår av Leasingavtalet. Leasetagaren ska vid betalningen gottskrivas eventuell försäkringsersättning; dock inte överstigande vad Leasetagaren ska betala till Leasegivaren. När Leasegivaren erhållit full betalning upphör detta Leasingavtal att gälla. Om Leasetagaren själv tecknar försäkring ska den omfatta skada på och förlust av Leasingobjektet (så kallad Allriskförsäkring) till ett belopp som motsvarar Leasingobjektets hela värde hos ett försäkringsbolag som Leasegivaren godkänt. Leasetagaren ska informera försäkringsbolaget om att Leasingobjektet tillhör Leasegivaren och att försäkringsersättning ska utbetalas till Leasegivaren. Leasetagaren ska se till att Leasegivaren får ansvarsförbindelse från valt försäkringsbolag. Leasetagaren ska på Leasegivarens begäran uppvisa gällande försäkringsbrev och bevis på att premie erlagts.</p>
+                <p>11 ÖVRIGA KOSTNADER</p>
+                <p>Skulle kostnader för transport, emballage och dylikt inte ingå i den ersättning Leasetagaren ska utge till Leasegivaren enligt Leasingavtalet, ansvarar Leasetagaren för att träffa separat överenskommelse avseende detta med Leverantören.</p>
+                <p>12 FÖRTIDA UPPSÄGNING OCH SKADESTÅND</p>
+                <p>Leasegivaren äger rätt att säga upp detta Leasingavtal, helt eller delvis, vid tidpunkt som Leasegivaren bestämmer om:</p>
+                <p>(a) Leasetagaren är försenad med en (1) betalning enligt detta Leasingavtal längre än tio (10) dagar eller Leasetagaren vid två (2) eller flera tillfällen betalat för sent,</p>
+                <p>(b) Leasetagaren vanvårdar Leasingobjektet, vidtar åtgärder som äventyrar Leasegivarens äganderätt till Leasingobjektet eller vägrar undersökning,</p>
+                <p>(c) Leasetagaren i väsentligt hänseende underlåter att fullgöra sina skyldigheter enligt detta Leasingavtal,</p>
+                <p>(d) Leasetagaren i annat hänseende underlåter att fullgöra sina skyldigheter enligt detta Leasingavtal och inte vidtar rättelse inom tjugo dagar från anmodan därom,</p>
+                <p>(e) Leasegivaren har skälig anledning att anta att Leasetagaren inte kommer fullgöra sina skyldigheter enligt detta Leasingavtal eller att Leasegivarens äganderätt eller annan rätt till Leasingobjektet äventyras</p>
+                <p>(f) Leasetagaren i något avseende har givit Leasegivaren oriktig, vilseledande eller ofullständig information,</p>
+                <p>(g) Leasetagaren vidtar någon åtgärd syftande till betalningsinställelse, likvidation, konkurs eller företagsrekonstruktion, om rättsligt förfarande eller annat förfarande avseende sådan åtgärd inleds eller om konkursförvaltare, likvidator, företagsrekonstruktör eller liknande utses för Leasetagaren</p>
+                <p>(h) Leasetagaren missköter andra avtal med Leasegivaren,</p>
+                <p>(i) eventuell ställd säkerhet för detta Leasingavtal eller för annan förpliktelse som Leasetagaren har mot Leasegivaren eller annan kreditgivare inte längre är betryggande</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 2 -->
+    <div class="page">
+        <div class="page-content">
+            <table>
+                <thead>
+                    <tr>
+                        <td>
+                            <p class="text-15 fw-700">ALLMÄNNA VILLKOR SE LEASING 2023-08-31</p>
+                        </td>
+                        <td>
+                            <p class="text-7 text-right">2 (2)</p>
+                        </td>
+                    </tr>
+                </thead>
+            </table>
+
+            <div class="column-split">
+                <p>(j) annan kreditgivare till Leasetagaren har rätt att säga upp avtal med Leasetagaren på grund av Leasetagarens avtalsbrott,</p>
+                <p>(k) Leasetagaren agerar oetiskt, </p>
+                <p>(l) Leasetagaren inte följer gällande lagar och förordningar</p>
+                <p>(m) Leasetagarens ägarstruktur eller inriktning avseende rörelsen väsentligen ändras eller Leasetagarens rörelse i sin helhet eller väsentlig del därav överlåts,</p>
+                <p>(n) Leasetagaren inte tillhandahåller Leasegivaren efterfrågade uppgifter enligt p 17</p>
+                <p>(o) det enligt Leasegivarens bedömning finns misstanke om att Leasetagaren agerar eller avser agera på ett sådant sätt som kan tolkas innehålla brottslighet eller vara i strid med gällande lagstiftning,</p>
+                <p>(p) Leasegivaren har anledning att anta att Leasetagaren på annat sätt handlar eller kommer att handla så att Leasegivaren kan orsakas skada, eller</p>
+                <p>(q) Leasetagaren, eller någon som ingår i dess styrelse eller på annat sätt har betydande betydelse i Leasetagarens verksamhet, blir listad på någon av de sanktionslistor avseende internationella sanktioner som Leasegivaren har att beakta i sin verksamhet. Vid uppsägning enligt ovan har Leasegivaren rätt att genast återta Leasingobjektet och Leasetagaren en skyldighet att lämna tillbaka objektet. Vid uppsägning ska förfallna avgifter och andra förfallna belopp genast betalas av Leasetagaren. I tillägg till detta ska Leasetagaren omedelbart erlägga skadestånd till Leasegivaren motsvarande summan av samtliga avgifter för den återstående leasingperioden samt avtalat restvärde. Vid avtal med rörlig avgift ska de framtida avgifterna beräknas med utgångspunkt från den avgift som fakturerades närmast före uppsägningen. Om restvärdet inte framgår av Leasingavtalet ska Leasingobjektets värde vid leasingperiodens utgång anses motsvara Leasegivarens beräknade bokförda värde på Leasingobjektet vid leasingperiodens utgång. Efter återfående av Leasingobjektet ska Leasegivaren försöka avyttra detsamma. Förutsatt att Leasegivaren lyckas avyttra Leasingobjektet ska Leasetagaren gottskrivas det belopp Leasegivaren erhåller vid försäljning av Leasingobjektet efter avdrag för återtagandekostnader (exempelvis transport och nedmontering) Leasegivaren haft i samband med försäljning av Leasingobjektet samt kostnader för eventuell reparation. Sådan gottskrivning sker först efter det att Leasetagaren erlagt betalning.</p>
+                <p class="heading">13 ANVISANDE AV KÖPARE ELLER ÅTERLÄMNANDE AV LEASINGOBJEKTET</p>
+                <p>Vid den ordinarie avtalstidens respektive förlängningsperiodens utgång ska Leasetagaren, före avtalstidens utgång, anvisa köpare till Leasingobjektet. Köparen ska då betala en köpeskilling till Leasegivaren som motsvarar Leasingobjektets avtalade restvärde. Vid försäljning under förlängningsperiod ska köpeskillingen beräknas till det restvärde som Leasingobjektet enligt Leasegivaren har vid den aktuella tidpunkten. Skatter, avgifter och Leasegivarens eventuella kostnader tillkommer. Leasingobjektet överlåts i befintligt skick och Leasegivaren lämnar inga garantier beträffande Leasingobjektet. Köparen ska på egen bekostnad och risk hämta Leasingobjektet. Leasetagaren ansvarar solidariskt med köparen till dess full betalning skett. Om Leasetagaren inte anvisat köpare före avtalstidens utgång ska Leasetagaren, i det fall Leasegivaren begär det, återlämna Leasingobjektet. Återlämnandet ska ske, utan dröjsmål och på bekostnad av Leasetagaren, till av Leasegivaren anvisad plats.</p>
+                <p>För det fall Leasetagaren underlåter att återlämna Leasingobjektet, trots att Leasegivaren uppmanat Leasetagaren att göra detta, har Leasegivaren rätt att ta ut tillkommande avgift med samma belopp som den sista ordinarie avgiften. Beloppet debiteras månadsvis fram till återlämnandet. Leasegivaren kan även ordna nedmontering, paketering samt transport av Leasingobjektet på Leasetagarens bekostnad. Leasetagarens ansvar för Leasingobjektet upphör inte förrän Leasegivaren, eller den Leasegivaren utser, beretts tillfälle att ta hand om Leasingobjektet. Om det vid Leasingobjektets återlämnande konstateras att det utsatts för förslitning i ej normal omfattning ska Leasetagaren ersätta Leasegivaren för den onormala förslitningen.</p>
+                <p>Leasegivaren har rätt att sälja objektet. Uppstår det vid försäljningen ett underskott mellan försäljningspriset, exklusive moms, efter avdrag för Leasegivarens samtliga försäljningskostnader och objektets avtalade restvärde ska Leasetagaren betala skillnaden.</p>
+                <p>Vid försäljning enligt denna punkt ska Leasetagaren ersätta Leasegivaren för ersättning som Leasegivaren måste betala till köparen på grund av fel eller brist i Leasingobjektet.</p>
+                <p class="heading">14 BETALNINGSVILLKOR</p>
+                <p>Faktura förfaller till betalning efter 30 dagar. Efter förfallodagen debiteras dröjsmålsränta med 24 % per år.</p>
+                <p class="heading">15 TILLÄGG ELLER ÄNDRINGAR</p>
+                <p>Leasingavtalet inklusive dessa allmänna villkor och undertecknat leveransgodkännande utgör parternas fullständiga avtal avseende leasing av Leasingobjektet. Tillägg till och förändringar av Leasingavtalet ska för att vara gällande ske skriftligen och vara undertecknade av Leasegivaren och Leasetagaren utom i de fall där Leasegivaren enligt detta avtal har rätt att vidta ändring. Muntliga överenskommelser är utan verkan. Leverantören och andra personer som inte är anställda av Leasegivaren och som kan ha varit involverade vid tillkomsten av Leasingavtalet eller under dess löptid är inte Leasegivarens ombud och äger inte rätt att företräda Leasegivaren. Leasegivaren ansvarar följaktligen inte för några garantier, utfästelser eller andra uttalanden som lämnats av sådana personer.</p>
+                <p class="heading">16 PANTSÄTTNING OCH ÖVERLÅTELSE</p>
+                <p>Leasegivaren får pantsätta och överlåta sina fordringar samt rättigheter och/eller skyldigheter enligt Leasingavtalet, inklusive äganderätten till Leasingobjektet. Sådan pantsättning eller överlåtelse ska dock ske med förbehåll för Leasetagarens rättigheter enligt Leasingavtalet. Leasetagaren äger inte rätt att överlåta eller pantsätta sina rättigheter och skyldigheter enligt Leasingavtalet.</p>
+                <p class="heading">17 INFORMATIONSSKYLDIGHET</p>
+                <p>Om förhållande av särskild betydelse för tillämpningen av Leasingavtalet uppstår ska Leasetagaren genast informera Leasegivaren därom. Leasetagaren ska också, om Leasegivaren så begär, tillhandahålla Leasegivaren finansiell information. Därtill är Leasetagaren skyldig att förse Leasegivaren med sådan information som Leasegivaren behöver för att kunna fullgöra sina skyldigheter enligt tillämplig lagstiftning om åtgärder mot penningtvätt och finansiering av terrorism. Sådan information ska lämnas inom 14 dagar från begäran.</p>
+                <p class="heading">18 MEDDELANDE </p>
+                <p>Meddelanden till part ska avsändas till den adress eller e-postadress som anges i Leasingavtalet. Meddelanden som sänds med rekommenderat brev ska anses ha nått motparten senast på sjätte dagen efter avsändandet. Part ska omedelbart informera motparten skriftligen om ändring av adress, e-postadress eller firma.</p>
+                <p class="heading">19 BEHANDLING AV PERSONUPPGIFTER</p>
+                <p class="sub-heading mt-0">Leasgivaren är personuppgiftsansvarig</p>
+                <p>Leasegivaren har genom detta avtal i uppdrag att som personuppgiftsansvarig behandla personuppgifter för Leasetagarens räkning. Ändamålet med behandling av personuppgifter ska vara att fullgöra Leasegivarens åtaganden enligt Leasingavtalet.</p>
+                <p class="sub-heading">Leasegivarens ansvar</p>
+                <p>Leasegivaren ska genomföra lämpliga tekniska och organisatoriska säkerhetsåtgärder för att säkerställa att endast personuppgifter som är nödvändiga för varje specifikt ändamål med behandlingen behandlas. Den skyldigheten gäller mängden insamlade personuppgifter, behandlingens omfattning, tiden för deras lagring och deras tillgänglighet. Dessa åtgärder ska framförallt säkerställa att all information som behandlas skyddas från att obehöriga får ta del av den.</p>
+                <p class="sub-heading">Leasegivarens behandling av Leasetagarens kontaktpersoner</p>
+                <p>Leasegivaren behandlar elektroniskt personuppgifter, såsom kontaktinformation till Leasetagarens kontaktpersoner, för att förse Leastagaren med tjänsterna enligt Leasingavtalet och för att administrera affärsrelationen med Leasetagaren. Uppgifterna kan även komma att användas för affärsrapporter och statistiska analyser samt för att uppfylla gällande lagar och förordningar.</p>
+                <p>Leasegivaren kan komma att till Leasetagarens kontaktpersoner skicka nyhetsbrev, genomföra produktundersökningar, marknadsföra liknande produkter och tjänster samt skicka inbjudningar till event. Sådan behandling baseras på en intresseavvägning där Leasegivarens berättigande intressen är att marknadsföra sina befintliga eller nya tjänster. Leasegivaren kan komma att lämna ut uppgifterna till andra företag inom Leasegivarens koncern, som också kan använda informationen för de ändamål som beskrivs här. Alla registrerade personer har rätt att på begäran få en kopia av de personuppgifter som är under behandling. De har också rätt att begära rättelse, radering, begränsad behandling eller rikta annan invändning mot behandling av personuppgifterna. Uppgifterna raderas när Leasegivaren erhållit besked att personen inte längre är kontaktperson. Ytterligare information kan erhållas genom att kontakta Leasegivaren via privacy@svea.com.</p>
+                <p class="sub-heading">Åtagande och garanti</p>
+                <p>Leasetagaren åtar sig att för Leasegivarens räkning informera kontaktpersonerna om ovanstående personuppgiftsbehandling i enlighet med tillämplig dataskyddslagstiftning och att uppgifterna får användas för de syften och på det sätt som beskrivs ovan. Leasetagaren garanterar att personuppgifter som delas till Leasegivaren är korrekta och att det finns laglig grund för behandlingen. Brister i denna garanti innebär avtalsbrott.</p>
+                <p class="heading">20 FORCE MAJEURE OCH ANSVARSBEGRÄNSNING</p>
+                <p>Leasegivaren är inte ansvarig för skada som beror på lagbud, myndighetsåtgärd, krigshändelse, strejk, blockad, bojkott, lockout eller annan omständighet utanför Leasegivarens kontroll. Förbehållet i fråga om strejk, blockad, bojkott och lockout gäller även om Leasegivaren självt är föremål för eller vidtar sådan åtgärd. Leasegivaren är i andra fall endast skyldig att ersätta skada som uppkommer om Leasegivaren varit grovt vårdslös. Leasegivaren ansvarar inte i något fall för indirekt skada eller följdskada. Leasetagaren bekräftar att Leasetagaren ingått Leasingavtalet baserat på sin egen granskning av Leasingobjektet och bedömning av villkoren i Leasingavtalet och de legala, skattemässiga och redovisningsmässiga konsekvenser som uppkommer i samband med ingåendet härav och att ingen uppgift från Leasegivaren eller dess representanter legat till grund för Leasetagarens bedömning av någon sådan konsekvens.</p>
+                <p class="heading">21 TILLÄMPLIG LAG OCH BEHÖRIG DOMSTOL</p>
+                <p>Svensk lag ska tillämpas på avtalet. Tvist ska avgöras av svensk allmän domstol</p>
+                <p class="main-heading">Specifika villkor</p>
+                <p class="heading">1 FUNKTION/SERVICE</p>
+                <p>Vid Funktionsavtal och Serviceavtal kan Leasegivaren fakturera servicedelen för Leverantörens räkning. Leasegivaren har inget ansvar för fel eller brist i serviceåtagandet eller Leasingobjektets funktion, vilket innebär att reklamation och krav i anledning av servicen ska tillställas Leverantören. Leasetagaren har också trots reklamation en skyldighet att erlägga betalningar till Leasegivaren och fullgöra sin skyldighet enligt Leasingavtalets villkor.</p>
+                <p class="mt-5">Leasetagaren äger inte heller rätt att framföra krav avseende brist i utförd service eller andra tjänster gentemot Leasegivaren. Sådan skyldighet kan dock kvarstå för Leverantören. </p>
+                <p class="mt-5">Leasegivaren äger vidare rätt att årligen höja avgiften på avtal där det ingår service. Den årliga avgiftshöjningen görs med anledning av inträffad prishöjning, ökad licensieringskostnad, valutaförändring, höjning av skatt eller annan oförutsedd prispåverkande händelse och uppgår till minst fyra (4) procent.</p>
+                <p class="headeing">2 LÅNGTIDSUNDERUTHYRNING</p>
+                <p class="sub-heading">Särskilda villkor vid vidareuthyrning</p>
+                <p>Dessa villkor gäller i de fall det på avtalssidan (förstasidan) under rubriken Särskilda villkor anges att Vidareuthyrning är tillåten och punkt 2 i de Specifika villkoren gäller för avtalet.</p>
+                <ol>
+                    <li>Med ändring av punkt 5. 3 ovan där det anges att Leasetagaren inte får hyra ut Leasingobjektet ger Leasegivaren undantag från det villkoret så att Leasetagaren har rätt att hyra ut Leasingobjektet till tredje man (Tredjeman).</li>
+                    <li>Leasegivaren har rätt att denuntiera Tredjeman om att Leasingobjektet leasas ut av Leasegivaren till Leasetagaren och att Leasegivaren äger objektet.</li>
+                    <li>Så länge Leasetagaren uppfyller avtalet med Leasegivaren godkänner Leasegivaren att Leasingobjektet är placerat hos Tredjeman. Leasingobjektet ska vara placerat på den adress som anges under Särskilda villkor på Leasingavtalets första sida. Leasingobjektet får inte flyttas utan godkännande från Leasegivaren.</li>
+                    <li>Leasetagaren ansvarar gentemot Leasegivaren för all skada och onormalt slitage (strikt ansvar) som åsamkas Leasingobjektet när objektet är placerat hos Tredjeman. Detta gäller även vid leverans till och från Tredjeman.</li>
+                    <li>Leasegivaren har rätt att ta del av de villkor som gäller mellan Leasetagaren och Tredjeman och som rör handhavande och skötsel av Leasingobjektet och med Tredjeman kontrollera att avtal med angivna villkor ingåtts mellan dem.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
