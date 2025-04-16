@@ -16,6 +16,18 @@
 	<name>document-service</name>
 	<description>Service for generating document</description>
 
+	<distributionManagement>
+		<repository>
+			<id>central</id>
+			<name>libs-release</name>
+			<url>https://artifactory.flinker.net/artifactory/libs-release-local</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>libs-snapshot</name>
+			<url>https://artifactory.flinker.net/artifactory/libs-snapshot-local</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 
 	<properties>
