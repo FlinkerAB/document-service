@@ -1,6 +1,11 @@
 package se.flinker.document.services;
 
+import static java.lang.String.format;
 import static java.util.Objects.nonNull;
+import static se.flinker.document.utils.InstallFontsHandler.downloadFont;
+import static se.flinker.document.utils.InstallFontsHandler.extractFontFamily;
+import static se.flinker.document.utils.InstallFontsHandler.extractFontUrl;
+import static se.flinker.document.utils.InstallFontsHandler.fetchCssContent;
 import static se.flinker.document.utils.LogUtil.debug;
 import static se.flinker.document.utils.LogUtil.warn;
 
@@ -8,7 +13,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -72,6 +81,35 @@ public class Html2PdfService {
         }
         
         return props;
+    }
+
+    public void installFonts(Map<String, String> payload, String tx) {
+        String url = payload.get("url");
+        String cssContent = fetchCssContent(url, tx);
+        
+        if (cssContent == null) {
+            warn(tx, "Failed to fetch CSS from: " + url, log);
+        } else {
+            Pattern fontFacePattern = Pattern.compile("@font-face\\s*\\{(.*?)\\}", Pattern.DOTALL);
+            Matcher fontFaceMatcher = fontFacePattern.matcher(cssContent);
+
+            Set<String> fontFamilies = new HashSet<>();
+            while (fontFaceMatcher.find()) {
+                String fontFaceBlock = fontFaceMatcher.group(1);
+                String fontFamily = extractFontFamily(fontFaceBlock);
+                String fontUrl = extractFontUrl(fontFaceBlock);
+                if (fontFamily != null && fontUrl != null) {
+                    if (fontFamilies.contains(fontFamily)) {
+                        debug(tx, format("[%s] - already downloaded", fontFamily), log);
+                    } else {
+                        String fileExtension = fontUrl.substring(fontUrl.lastIndexOf('.'));
+                        String localFontPath = downloadFont(fontsDir, fontUrl, fontFamily + fileExtension, tx);
+                        fontFamilies.add(fontFamily);
+                        debug(tx, "font installed: " + localFontPath, log);
+                    }
+                }
+            }
+        }
     }
 
 }

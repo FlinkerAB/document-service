@@ -46,4 +46,17 @@ public class ApiRunner {
 //        payload.put("colormode", "cmyk");
         return payload;
     }
+    
+    @Test
+    public void test_install_fonts() throws Exception {
+        Map<String, String> payload = new HashMap<>();
+        payload.put("url", "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+        
+        RestTemplate rest = new RestTemplate();
+        
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("X-docservice-api-key", apiKey);
+        HttpEntity<Object> requestEntity = new HttpEntity<>(payload, headers);
+        rest.exchange(endpoint + "/install-fonts", HttpMethod.POST, requestEntity, byte[].class, emptyMap());
+    }
 }

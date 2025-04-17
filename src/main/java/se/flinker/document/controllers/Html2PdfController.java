@@ -59,4 +59,31 @@ public class Html2PdfController extends BaseController {
         });
         return result;
     }
+    
+    @PostMapping("/install-fonts")
+    public DeferredResult<ResponseEntity<?>> installFonts(@RequestBody Map<String, String> payload) {
+        final String tx = tx();
+        DeferredResult<ResponseEntity<?>> result = new DeferredResult<>();
+        executor.execute(() -> {
+            StopWatch stopWatch = new StopWatch();
+            stopWatch.start();
+            HttpStatus status = HttpStatus.NO_CONTENT;
+            try {
+                info(tx, "install-fonts", log);
+                srv.installFonts(payload, tx);
+                result.setResult(new ResponseEntity<>(status));
+            } catch (Exception e) {
+                result.setErrorResult(e);
+                if (e instanceof DocumentServiceAppRuntimeException) {
+                    status = ((DocumentServiceAppRuntimeException) e).httpStatus();
+                } else {
+                    status = HttpStatus.INTERNAL_SERVER_ERROR;
+                }
+            } finally {
+                stopWatch.stop();
+                info(tx, format("[reqEnd][%s][exetime:%s ms]", status.value(), stopWatch.getTotalTimeMillis()), log);
+            }
+        });
+        return result;
+    }
 }
