@@ -1,5 +1,7 @@
 package se.flinker.document;
 
+import static java.lang.String.format;
+
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -17,6 +19,8 @@ import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
 import com.itextpdf.layout.font.FontProvider;
 import com.itextpdf.styledxmlparser.resolver.font.BasicFontProvider;
+
+import se.flinker.document.util.Fixtures;
 
 public class HtmlToPdfWithRemoteFonts {
 
@@ -44,7 +48,8 @@ public class HtmlToPdfWithRemoteFonts {
 
         // Step 1: Fetch the CSS content from the URL
         // This part requires an HTTP client library (e.g., Apache HttpClient, OkHttp)
-        String cssContent = fetchCssContent(cssUrl);
+        String cssContent = fetchCssContentFromDisc("poppins.css");
+//        String cssContent = fetchCssContent(cssUrl);
         if (cssContent == null) {
             System.err.println("Failed to fetch CSS from: " + cssUrl);
             return registeredFonts;
@@ -58,24 +63,29 @@ public class HtmlToPdfWithRemoteFonts {
         while (fontFaceMatcher.find()) {
             String fontFaceBlock = fontFaceMatcher.group(1);
             String fontFamily = extractFontFamily(fontFaceBlock);
+            String fontStyle = extractFontStyle(fontFaceBlock);
+            String fontWeight = extractFontWeight(fontFaceBlock);
             String fontUrl = extractFontUrl(fontFaceBlock);
 
             if (fontFamily != null && fontUrl != null) {
-                if (fontFamilys.contains(fontFamily)) {
-                    System.out.printf("[%s] - already downloaded%n", fontFamily);
+                String fileExtension = fontUrl.substring(fontUrl.lastIndexOf('.')); // Extract the file extension
+                String localFilename = format("%s_%s_%s%s", fontFamily, fontStyle, fontWeight, fileExtension);
+                
+                if (fontFamilys.contains(localFilename)) {
+                    System.out.printf("[%s] - already downloaded%n", localFilename);
                 } else {
                     
                     // Step 3: Download the font file
                     // This part also requires an HTTP client and file handling
-                    String fileExtension = fontUrl.substring(fontUrl.lastIndexOf('.')); // Extract the file extension
-                    String localFontPath = downloadFont(fontUrl, fontFamily + fileExtension); // Use the extracted extension
+//                    String localFontPath = downloadFont(fontUrl, fontFamily + fileExtension); // Use the extracted extension
+                    String localFontPath = downloadFont(fontUrl, localFilename); // Use the extracted extension
                     
                     if (localFontPath != null) {
-                        registeredFonts.put(fontFamily, localFontPath);
-                        System.out.println("Downloaded and will register: " + fontFamily + " from " + fontUrl + " to " + localFontPath);
-                        fontFamilys.add(fontFamily);
+                        registeredFonts.put(localFilename, localFontPath);
+                        System.out.println("Downloaded and will register: " + localFilename + " from " + fontUrl + " to " + localFontPath);
+                        fontFamilys.add(localFilename);
                     } else {
-                        System.err.println("Failed to download font for: " + fontFamily + " from " + fontUrl);
+                        System.err.println("Failed to download font for: " + localFilename + " from " + fontUrl);
                     }
                 }
             }
@@ -84,6 +94,10 @@ public class HtmlToPdfWithRemoteFonts {
         return registeredFonts;
     }
 
+    public static String fetchCssContentFromDisc(String fixtureName) {
+        return Fixtures.load(fixtureName);
+    }
+    
     public static String fetchCssContent(String cssUrl) {
         StringBuilder content = new StringBuilder();
         HttpURLConnection connection = null;
@@ -127,6 +141,24 @@ public class HtmlToPdfWithRemoteFonts {
 
     private static String extractFontFamily(String fontFaceBlock) {
         Pattern fontFamilyPattern = Pattern.compile("font-family\\s*:\\s*['\"]?([^'\";]+)['\"]?");
+        Matcher fontFamilyMatcher = fontFamilyPattern.matcher(fontFaceBlock);
+        if (fontFamilyMatcher.find()) {
+            return fontFamilyMatcher.group(1);
+        }
+        return null;
+    }
+    
+    private static String extractFontStyle(String fontFaceBlock) {
+        Pattern fontFamilyPattern = Pattern.compile("font-style\\s*:\\s*['\"]?([^'\";]+)['\"]?");
+        Matcher fontFamilyMatcher = fontFamilyPattern.matcher(fontFaceBlock);
+        if (fontFamilyMatcher.find()) {
+            return fontFamilyMatcher.group(1);
+        }
+        return null;
+    }
+    
+    private static String extractFontWeight(String fontFaceBlock) {
+        Pattern fontFamilyPattern = Pattern.compile("font-weight\\s*:\\s*['\"]?([^'\";]+)['\"]?");
         Matcher fontFamilyMatcher = fontFamilyPattern.matcher(fontFaceBlock);
         if (fontFamilyMatcher.find()) {
             return fontFamilyMatcher.group(1);
